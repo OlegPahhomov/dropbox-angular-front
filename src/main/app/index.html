@@ -35,15 +35,31 @@
 <!-- angular -->
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
 <script src="js/dropbox.js"></script>
+<script src="js/dropbox.controller.js"></script>
+<script src="js/dropbox.service.js"></script>
 
 <div id="content">
-    <script>document.write(serverConfig.SPRING_BOOT())</script>
+    <div ng-controller="PictureDisplayController as vm">
+        <div class="file-container">
+            <div ng-repeat="picture in vm.pictures">
+                <div ng-class="picture.ratioClass">
+                    <a class="fancybox" ng-href="{{picture.popUpClass}}"
+                       rel="pictures" ng-title="{{picture.name}}">
+                        <img ng-title="{{picture.name}}" ng-src="{{picture.urlLink}}">
+                    </a>
 
+                    <div class="file-fullscreen" id="{{picture.popUpClass}}" style="display: none;">
+                        <img ng-title="{{picture.name}}" ng-src="{{picture.urlLink}}">
+                    </div>
 
-
-    <div ng-controller="PictureDisplayController">
-        <div>{{pictures}}</div>
+                    <form ng-submit="picture.deletePicture()">
+                        <button type="submit" class="close" title="Delete file">&times;</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
+
 
 </div>
 </body>
