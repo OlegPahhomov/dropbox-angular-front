@@ -1,3 +1,4 @@
+/*
 (function () {
     'use strict';
     angular
@@ -6,12 +7,14 @@
 
     DropboxService.$inject = ['$http', '$upload'];
     function DropboxService($http, $upload) {
+        //var url = serverConfig.SERVER;
+        var url = "http://localhost:8080/";
+
         var service = {
-            url: serverConfig.SERVER,
             getFiles: getFiles,
             getOneFile: getOneFile,
             deleteFile: deleteFile,
-            addFiles: addFiles,
+            addFiles: addFiles
         };
         return service;
 
@@ -36,3 +39,4 @@
         }
     }
 })();
+*/
