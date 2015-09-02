@@ -3,21 +3,22 @@
     angular.module('dropbox')
         .directive('fancybox', FancyBoxDirective);
 
-    FancyBoxDirective.$inject = ['$scope, $timeout'];
+    FancyBoxDirective.$inject = ['$compile'];
 
-    function FancyBoxDirective($scope, element, attrs) {
-        element.fancybox({
-            hideOnOverlayClick: false,
-            hideOnContentClick: false,
-            enableEscapeButton: false,
-            showNavArrows: false,
-            onComplete: function () {
-                $timeout(function () {
-                    $compile($("#fancybox-content"))($scope);
-                    $scope.$apply();
-                    $.fancybox.resize();
-                })
+    function FancyBoxDirective($compile) {
+        return {
+            restrict: 'A',
+            replace: false,
+            link: function ($scope, element) {
+                if ($scope) setTimeout(function () {
+                    $scope.open_fancybox = function () {
+                        var el = angular.element(element.html());
+                        var compiled = $compile(el);
+                        $.fancybox.open(el);
+                        compiled($scope);
+                    }
+                });
             }
-        });
+        };
     }
 })();

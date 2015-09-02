@@ -38,7 +38,6 @@ app.controller('MainCtrl', ['$scope',
             'age': 3
         }];
 
-        $scope.alert = function (phone) { window.alert(phone.name); };
 
     }
 ]);    
