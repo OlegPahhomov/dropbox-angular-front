@@ -3,12 +3,13 @@
     angular.module('dropbox')
         .controller('PictureDisplayController', PictureDisplayController);
 
-    PictureDisplayController.$inject = ['DropboxService'];
+    PictureDisplayController.$inject = ['$state', 'DropboxService'];
 
-    function PictureDisplayController(DropboxService) {
+    function PictureDisplayController($state, DropboxService ) {
         var url = serverConfig.SERVER();
         var vm = this;
         vm.pictures = getPictures();
+        vm.deletePicture = removePicture;
 
         function getPictures() {
             DropboxService.getPictures
@@ -17,17 +18,16 @@
                     var addDtoParameters = function (picture) {
                         picture.ratioClass = (picture.ratio > 1.45 ? "file bigfile" : "file"); // (b?x:y) parens fix bug
                         picture.urlLink = url + 'picture/' + picture.id + '.jpg';
-                        //todo later
-                        //picture.deletePicture = removePicture;
                     };
                     vm.pictures.forEach(addDtoParameters);
                 });
         }
 
+
         function removePicture(id) {
             DropboxService.removePicture(id)
-                .success(function (response) {
-                    return response;
+                .success(function () {
+                    location.reload();
                 })
         }
     }

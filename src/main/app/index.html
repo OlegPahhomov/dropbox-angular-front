@@ -6,10 +6,6 @@
     <!-- jQuery -->
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 
-    <!-- bootstrap -->
-    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>-->
-
     <script type="text/javascript"
             src="https://cdn.rawgit.com/jquery/jquery-mousewheel/3.1.12/jquery.mousewheel.js"></script>
     <script type="text/javascript"
@@ -31,7 +27,7 @@
     <!-- serverConfig -->
     <script src="js/serverConfig.js"></script>
 
-    <script src='js/angular-fancybox-plus.js'></script>
+    <script src='libs/angular-fancybox-plus.js'></script>
     <script src="js/dropbox.js"></script>
     <script src="js/dropbox.controller.js"></script>
     <script src="js/dropbox.service.js"></script>
@@ -45,14 +41,14 @@
         <div ng-repeat="picture in vm.pictures">
 
             <div ng-class="picture.ratioClass">
-                <a rel="example_group"
-                   title="Custom title"
-                   href={{picture.urlLink}}
-                   fancyboxable="example1">
+                <a rel="picture_group"
+                   title="{{picture.name}}"
+                   ng-href="{{picture.urlLink}}"
+                   fancyboxable="picture">
                     <img alt="" ng-src="{{picture.urlLink}}">
                 </a>
 
-                <form ng-submit="picture.deletePicture()">
+                <form ng-submit="vm.deletePicture(picture.id)">
                     <button type="submit" class="close" title="Delete file">&times;</button>
                 </form>
             </div>
