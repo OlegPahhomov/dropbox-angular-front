@@ -4,59 +4,64 @@
     <meta charset="UTF-8">
     <title>Simple File Uploader</title>
     <!-- jQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 
     <!-- bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>-->
+
+    <script type="text/javascript"
+            src="https://cdn.rawgit.com/jquery/jquery-mousewheel/3.1.12/jquery.mousewheel.js"></script>
+    <script type="text/javascript"
+            src="https://cdn.rawgit.com/igorlino/fancybox-plus/1.3.6/src/jquery.fancybox-plus.js"></script>
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.rawgit.com/igorlino/fancybox-plus/1.3.6/css/jquery.fancybox-plus.css" media="screen"/>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+
+    <script src='https://cdn.rawgit.com/igorlino/angular-elevatezoom-plus/1.1.3/js/angular-ezplus.js'></script>
+
 
     <!-- my css -->
     <link rel="stylesheet" type="text/css" href="css/files.css">
     <link rel="stylesheet" type="text/css" href="css/upload-form.css">
+
     <!-- serverConfig -->
     <script src="js/serverConfig.js"></script>
 
-    <!-- jquery mousewheel-->
-    <script src="libs/mousewheel/jquery.mousewheel-3.0.6.pack.js"></script>
-
-    <!-- jQuery validate -->
-    <script src="libs/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="libs/jquery-validation/dist/additional-methods.min.js"></script>
-
-    <!-- fancybox -->
-    <link rel="stylesheet" href="libs/fancybox/source/jquery.fancybox.css">
-    <script src="libs/fancybox/source/jquery.fancybox.pack.js"></script>
+    <script src='js/angular-fancybox-plus.js'></script>
+    <script src="js/dropbox.js"></script>
+    <script src="js/dropbox.controller.js"></script>
+    <script src="js/dropbox.service.js"></script>
 </head>
 <body>
-<!-- angular -->
-<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
-<script src="js/dropbox.js"></script>
-<script src="js/dropbox.controller.js"></script>
-<script src="js/dropbox.service.js"></script>
-<script src="js/dropbox.directive.js"></script>
+
 
 <div id="content">
-    <div ng-controller="PictureDisplayController as vm">
-        <div class="file-container">
-            <div ng-repeat="picture in vm.pictures">
-                <div ng-class="picture.ratioClass">
-                    <a class="fancybox" ng-click="open_fancybox()" ng-href="{{picture.popUpClass}}"
-                       rel="pictures" ng-title="{{picture.name}}">
-                        <img ng-title="{{picture.name}}" ng-src="{{picture.urlLink}}">
-                    </a>
+    <div class="file-container" ng-controller="PictureDisplayController as vm">
 
-                    <div class="file-fullscreen" id="{{picture.popUpClass}}" fancybox style="display: none;">
-                        <img ng-title="{{picture.name}}" ng-src="{{picture.urlLink}}">
-                    </div>
+        <div ng-repeat="picture in vm.pictures">
 
-                    <form ng-submit="picture.deletePicture()">
-                        <button type="submit" class="close" title="Delete file">&times;</button>
-                    </form>
-                </div>
+            <div ng-class="picture.ratioClass">
+                <a rel="example_group"
+                   title="Custom title"
+                   href={{picture.urlLink}}
+                   fancyboxable="example1">
+                    <img alt="" ng-src="{{picture.urlLink}}">
+                </a>
+
+                <form ng-submit="picture.deletePicture()">
+                    <button type="submit" class="close" title="Delete file">&times;</button>
+                </form>
             </div>
-        </div>
-    </div>
 
+        </div>
+
+    </div>
+</div>
+</div>
 
 
 </div>

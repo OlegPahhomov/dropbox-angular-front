@@ -16,8 +16,7 @@
                     vm.pictures = response;
                     var addDtoParameters = function (picture) {
                         picture.ratioClass = (picture.ratio > 1.45 ? "file bigfile" : "file"); // (b?x:y) parens fix bug
-                        picture.urlLink = url + 'picture/' + picture.id;
-                        picture.popUpClass = "#show_popup_link_" + picture.id;
+                        picture.urlLink = url + 'picture/' + picture.id + '.jpg';
                         //todo later
                         //picture.deletePicture = removePicture;
                     };

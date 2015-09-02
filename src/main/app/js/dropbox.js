@@ -1,4 +1,6 @@
 (function () {
     'use strict';
-    angular.module('dropbox', []);
+    angular.module('dropbox', [
+        'fancyboxplus',
+    ]);
 })();
