@@ -9,7 +9,8 @@
         var url = serverConfig.SERVER();
         return {
             getPictures: getPictures(),
-            removePicture: removePicture
+            removePicture: removePicture,
+            uploadPicture: uploadPicture
         };
 
         function getPictures() {
@@ -18,6 +19,17 @@
 
         function removePicture(id) {
             return $http.post(url + 'remove/' + id);
+        }
+
+        function uploadPicture(files) {
+            var data = new FormData();
+            for (var i = 0; i < files.length; i++) {
+                data.append("file", files[i]);
+            }
+            return $http.post(url + 'add', data, {
+                transformRequest: angular.identity,
+                headers: {'Content-Type': undefined}
+            });
         }
     }
 })();

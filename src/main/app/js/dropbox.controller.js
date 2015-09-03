@@ -3,13 +3,14 @@
     angular.module('dropbox')
         .controller('PictureDisplayController', PictureDisplayController);
 
-    PictureDisplayController.$inject = ['$state', 'DropboxService'];
+    PictureDisplayController.$inject = ['$scope', 'DropboxService'];
 
-    function PictureDisplayController($state, DropboxService ) {
+    function PictureDisplayController($scope, DropboxService) {
         var url = serverConfig.SERVER();
         var vm = this;
         vm.pictures = getPictures();
         vm.deletePicture = removePicture;
+        vm.uploadFile = uploadFile;
 
         function getPictures() {
             DropboxService.getPictures
@@ -23,9 +24,17 @@
                 });
         }
 
-
         function removePicture(id) {
             DropboxService.removePicture(id)
+                .success(function () {
+                    location.reload();
+                })
+        }
+
+        function uploadFile() {
+            var file = $scope.myFile;
+            console.log(file);
+            DropboxService.uploadPicture(file)
                 .success(function () {
                     location.reload();
                 })
