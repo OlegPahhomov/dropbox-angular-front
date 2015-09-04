@@ -33,7 +33,6 @@
 
         function uploadFile() {
             var file = $scope.myFile;
-            console.log(file);
             DropboxService.uploadPicture(file)
                 .success(function () {
                     location.reload();
