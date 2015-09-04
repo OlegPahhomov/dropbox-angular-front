@@ -33,10 +33,12 @@
 
         function uploadFile() {
             var file = $scope.myFile;
-            DropboxService.uploadPicture(file)
-                .success(function () {
-                    location.reload();
-                })
+            if (file != undefined || file != null) {
+                DropboxService.uploadPicture(file)
+                    .success(function () {
+                        location.reload();
+                    })
+            }
         }
     }
 })();
